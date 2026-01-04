@@ -1,60 +1,61 @@
-# SakshamPortfolio
+# 🚀 Portfolio_v2 Angular: The "Over-Engineered" Portfolio
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.2.
+> **"Why build a simple HTML page when you can build a state-managed, signal-driven, zoneless Angular application?"** - *Every Engineer, ever.*
 
-## Development server
+![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 
-To start a local development server, run:
+## 👋 Welcome, Technical Recruiter!
 
-```bash
+If you are reading this, you probably clicked the **"Ready to be more impressed?"** button on my site.
+
+I like your curiosity!
+
+This isn't just a portfolio; it's a playground where I demonstrate that I actually keep up with the chaotic Javascript ecosystem.
+
+### 🛠️ The Tech Stack (The "Good Stuff")
+
+This project is built on the **Bleeding Edge™**:
+
+*   **⚡ Angular 17+ (Zoneless):** No `Zone.js`. Change detection is manually triggered or Signal-based. Performance is O(1).
+*   **📡 Signals:** No `BehaviorSubject` soup. No `.subscribe()`. Just pure, reactive primitives.
+*   **🎨 Tailwind CSS v4:** The new engine. Zero runtime, pure CSS variables, instant builds.
+*   **🧩 Zard UI:** A headless/styled component architecture (similar to shadcn/ui) because I like full control over my components.
+
+### 🎮 How to "Play" the Portfolio
+
+I treated the UX like a mini-RPG:
+
+1.  **Select your Class:** Are you a `Recruiter` or a `Guest`?
+2.  **Choose your Weapon:** Hiring for `Angular`? `React`? `Java`?
+3.  **The Routing Strategy:** Dynamic routes (`/projects/:role`) using **Component Input Binding** (no `ActivatedRoute` boilerplate).
+
+### 🏗️ Architecture Highlights
+
+If you look at `src/app/app.ts`, you won't find a single RxJS subscription.
+```typescript
+// The old way (RxJS) 🤮
+this.state$.subscribe(val => this.val = val);
+
+// The Saksham way (Signals) 🚀
+viewState = signal('LANDING');
+// HTML updates instantly.
+```
+
+🏃‍♂️ Run it locally
+Want to critique my code formatting? Be my guest:
+
+```Bash
+fork it!
+git clone https://github.com/[YOUR_GITHUB_USERNAME]/saksham-portfolio.git
+cd saksham-portfolio
+npm install
 ng serve
 ```
+### 🤝 Let's Talk Code
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+If you like what you see (and how I write), let's schedule that interview. I promise I can explain standard change detection vs. OnPush without sweating.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-# saksham-portfolio
+### ❤️ A Note from the Creator
+Built with ❤️ and way too much coffee ☕ by Saksham.
