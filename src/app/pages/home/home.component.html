@@ -1,0 +1,104 @@
+<!--
+      VIEW 1: LANDING
+    -->
+@if (viewState() === 'LANDING') {
+<div class="relative z-10 max-w-2xl w-full animate-in fade-in zoom-in duration-500">
+  <ng-template #landingTitle>
+    <div class="flex flex-col gap-2">
+      <z-badge zType="outline" class="w-fit mb-2">0xsaksham.live</z-badge>
+      <span class="text-4xl md:text-6xl font-bold tracking-tight">
+        Hi, I am <span class="text-orange-500 font-serif italic">Saksham</span>
+      </span>
+      <span class="text-muted-foreground text-xl font-normal">
+        Welcome to my <span class="text-primary font-mono">Portfolio_v2</span>
+      </span>
+    </div>
+  </ng-template>
+
+  <z-card [zTitle]="landingTitle" class="border-border/50 bg-card/50 backdrop-blur-sm shadow-2xl">
+    <div class="flex flex-col md:flex-row gap-4 pt-4">
+      <button z-button zSize="lg" (click)="startRecruiterFlow()">
+        Are you a Recruiter? 👔
+      </button>
+
+      <button z-button zType="outline" zSize="lg" (click)="startGuestFlow()">
+        Just Visiting? ☕
+      </button>
+    </div>
+  </z-card>
+</div>
+}
+
+<!--
+      VIEW 2: ROLE SELECTION (Technical Recruiter Context)
+    -->
+@else if (viewState() === 'ROLE_SELECTION') {
+<div class="relative z-10 max-w-4xl w-full animate-in slide-in-from-right-8 duration-300">
+  <ng-template #roleTitle>
+    <div class="flex justify-between items-center w-full">
+      <div class="flex flex-col">
+        <span class="text-3xl font-bold">Technical Recruitment</span>
+        <span class="text-sm text-muted-foreground">Select a technology stack to view relevant codebase &
+          architecture.</span>
+      </div>
+      <button z-button zType="ghost" (click)="reset()">← Back</button>
+    </div>
+  </ng-template>
+
+  <z-card [zTitle]="roleTitle" class="border-border bg-card shadow-2xl">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Frontend Section -->
+      <div class="space-y-4">
+        <h3 class="text-xl font-mono text-primary flex items-center gap-2">
+          Frontend
+          <div class="h-px bg-border flex-1"></div>
+        </h3>
+
+        <button z-button zType="secondary" class="w-full justify-between group" (click)="setRole('Angular')">
+          Angular
+          <span class="text-muted-foreground group-hover:translate-x-1 transition-transform">→</span>
+        </button>
+        <button z-button zType="secondary" class="w-full justify-between group" (click)="setRole('React')">
+          React
+          <span class="text-muted-foreground group-hover:translate-x-1 transition-transform">→</span>
+        </button>
+      </div>
+
+      <!-- Backend Section -->
+      <div class="space-y-4">
+        <h3 class="text-xl font-mono text-orange-500 flex items-center gap-2">
+          Backend
+          <div class="h-px bg-border flex-1"></div>
+        </h3>
+
+        <button z-button zType="secondary" class="w-full justify-between group" (click)="setRole('Java')">
+          Java / Spring Boot
+          <span class="text-muted-foreground group-hover:translate-x-1 transition-transform">→</span>
+        </button>
+        <button z-button zType="secondary" class="w-full justify-between group" (click)="setRole('Node')">
+          Node.js
+          <span class="text-muted-foreground group-hover:translate-x-1 transition-transform">→</span>
+        </button>
+      </div>
+    </div>
+  </z-card>
+</div>
+}
+
+<!--
+      VIEW 3: GUEST FLOW
+    -->
+@else if (viewState() === 'GUEST_FLOW') {
+<div class="text-center animate-in fade-in duration-500 max-w-2xl">
+  <z-card>
+    <h1 class="text-4xl font-bold mb-4">Explore My Work</h1>
+    <p class="text-muted-foreground mb-6">
+      Feel free to browse projects without a specific filter.
+    </p>
+    <div class="flex gap-4 justify-center">
+      <button z-button (click)="setRole('Angular')">All Projects</button>
+      <button z-button zType="outline" (click)="reset()">Back Home</button>
+    </div>
+  </z-card>
+</div>
+}
