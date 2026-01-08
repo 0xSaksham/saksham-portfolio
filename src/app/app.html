@@ -1,12 +1,28 @@
 <main
-  class="min-h-screen w-full flex items-center justify-center p-6 relative overflow-hidden bg-background text-foreground">
+  class="min-h-screen w-full flex items-center justify-center p-6 relative overflow-hidden bg-background text-foreground transition-colors duration-500">
 
-  <!-- Background Ambient Glows -->
-  <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
-  <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-orange-500/10 rounded-full blur-3xl pointer-events-none">
+  <!-- THEME TOGGLE BUTTON (Absolute Top Right) -->
+  <div class="absolute top-6 right-6 z-50">
+    <button z-button zType="outline" (click)="toggleTheme()" class="rounded-full h-10 w-10 flex items-center justify-center">
+      @if(isDarkMode()) {
+      <z-icon zType="sun" class="text-orange-400" />
+      } @else {
+      <z-icon zType="moon" class="text-slate-700" />
+      }
+    </button>
   </div>
 
-  <!-- VIEW 1: LANDING -->
+  <!-- Background Ambient Glows (Dynamic based on mode) -->
+  <div
+    class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-primary/20 rounded-full blur-3xl pointer-events-none transition-opacity duration-1000">
+  </div>
+  <div
+    class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-orange-500/10 rounded-full blur-3xl pointer-events-none transition-opacity duration-1000">
+  </div>
+
+  <!--
+    VIEW 1: LANDING
+  -->
   @if (viewState() === 'LANDING') {
   <div class="relative z-10 max-w-2xl w-full animate-in fade-in zoom-in duration-500">
 
@@ -23,123 +39,91 @@
     </ng-template>
 
     <z-card [zTitle]="landingTitle" class="border-border/50 bg-card/50 backdrop-blur-sm shadow-2xl">
+
       <div class="flex flex-col md:flex-row gap-4 pt-4">
         <button z-button zSize="lg" (click)="startRecruiterFlow()">
           Are you a Recruiter? 👔
         </button>
+
         <button z-button zType="outline" zSize="lg" (click)="startGuestFlow()">
           Just Visiting? ☕
         </button>
       </div>
     </z-card>
-
   </div>
   }
 
-  <!-- VIEW 2: ROLE SELECTION -->
+  <!--
+    VIEW 2: ROLE SELECTION (Technical Recruiter Context)
+  -->
   @else if (viewState() === 'ROLE_SELECTION') {
   <div class="relative z-10 max-w-4xl w-full animate-in slide-in-from-right-8 duration-300">
 
     <ng-template #roleTitle>
       <div class="flex justify-between items-center w-full">
-        <span class="text-3xl font-bold">Which role are you hiring for?</span>
-        <button z-button zType="ghost" (click)="reset()">← Go Back</button>
+        <div class="flex flex-col">
+          <span class="text-3xl font-bold">Technical Recruitment</span>
+          <span class="text-sm text-muted-foreground">Select a technology stack to view relevant codebase &
+            architecture.</span>
+        </div>
+        <button z-button zType="ghost" (click)="reset()">← Back</button>
       </div>
     </ng-template>
 
     <z-card [zTitle]="roleTitle" class="border-border bg-card shadow-2xl">
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-        <!-- Frontend -->
+        <!-- Frontend Section -->
         <div class="space-y-4">
           <h3 class="text-xl font-mono text-primary flex items-center gap-2">
-            Frontend <div class="h-px bg-border flex-1"></div>
+            Frontend
+            <div class="h-px bg-border flex-1"></div>
           </h3>
-          <button z-button zType="secondary" class="w-full justify-between" (click)="setRole('Angular')">
-            Angular <span class="text-muted-foreground opacity-50">→</span>
+
+          <button z-button zType="secondary" class="w-full justify-between group" (click)="setRole('Angular')">
+            Angular <span class="text-muted-foreground group-hover:translate-x-1 transition-transform">→</span>
           </button>
-          <button z-button zType="secondary" class="w-full justify-between" (click)="setRole('React')">
-            React <span class="text-muted-foreground opacity-50">→</span>
+          <button z-button zType="secondary" class="w-full justify-between group" (click)="setRole('React')">
+            React <span class="text-muted-foreground group-hover:translate-x-1 transition-transform">→</span>
           </button>
         </div>
 
-        <!-- Backend -->
+        <!-- Backend Section -->
         <div class="space-y-4">
           <h3 class="text-xl font-mono text-orange-500 flex items-center gap-2">
-            Backend <div class="h-px bg-border flex-1"></div>
+            Backend
+            <div class="h-px bg-border flex-1"></div>
           </h3>
-          <button z-button zType="secondary" class="w-full justify-between" (click)="setRole('Java')">
-            Java / Spring Boot <span class="text-muted-foreground opacity-50">→</span>
+
+          <button z-button zType="secondary" class="w-full justify-between group" (click)="setRole('Java')">
+            Java / Spring Boot <span
+              class="text-muted-foreground group-hover:translate-x-1 transition-transform">→</span>
           </button>
-          <button z-button zType="secondary" class="w-full justify-between" (click)="setRole('Node')">
-            Node.js <span class="text-muted-foreground opacity-50">→</span>
+          <button z-button zType="secondary" class="w-full justify-between group" (click)="setRole('Node')">
+            Node.js <span class="text-muted-foreground group-hover:translate-x-1 transition-transform">→</span>
           </button>
         </div>
+
       </div>
+
     </z-card>
   </div>
   }
 
-  <!-- VIEW 3: GUEST FLOW -->
+  <!--
+    VIEW 3: GUEST FLOW
+  -->
   @else if (viewState() === 'GUEST_FLOW') {
-  <div class="text-center animate-in fade-in duration-500">
+  <div class="text-center animate-in fade-in duration-500 max-w-2xl">
     <z-card>
       <h1 class="text-4xl font-bold mb-4">Explore My Work</h1>
       <p class="text-muted-foreground mb-6">Feel free to browse projects without a specific filter.</p>
-      <button z-button (click)="reset()">Back Home</button>
+      <div class="flex gap-4 justify-center">
+        <button z-button (click)="setRole('Angular')">All Projects</button>
+        <button z-button zType="outline" (click)="reset()">Back Home</button>
+      </div>
     </z-card>
-  </div>
-  }
-
-  <!--
-    SECRET RECRUITER LINK (Bottom Right)
-  -->
-  <div class="absolute bottom-4 right-4 z-50">
-    <button (click)="openTechModal()"
-      class="text-xs md:text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 opacity-70 hover:opacity-100">
-      <span class="hidden md:inline">Technical Recruiter?</span>
-      <span class="font-mono bg-secondary px-2 py-1 rounded">Ready to be impressed?</span>
-    </button>
-  </div>
-
-  <!--
-    CUSTOM MODAL OVERLAY
-    (Displayed only if showTechModal is true)
-  -->
-  @if (showTechModal()) {
-  <div
-    class="fixed inset-0 z-100 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-    <!-- Modal Content -->
-    <div class="w-full max-w-md mx-4 animate-in zoom-in-95 duration-200">
-
-      <ng-template #modalTitle>
-        <div class="flex items-center gap-2 text-primary">
-          <span class="text-xl">⚡ Tech Check</span>
-        </div>
-      </ng-template>
-
-      <z-card [zTitle]="modalTitle" class="bg-card border-primary/30 shadow-neon-blue">
-
-        <p class="text-foreground mb-6 leading-relaxed">
-          Are you a <b class="text-white">Technical Recruiter</b> or <b class="text-white">Engineering Manager</b>?
-          <br><br>
-          If you click YES, I'll take you to the GitHub repository so you can inspect my
-          <span class="font-mono text-xs bg-secondary px-1 rounded">Signals</span>,
-          <span class="font-mono text-xs bg-secondary px-1 rounded">Zoneless setup</span>, and
-          <span class="font-mono text-xs bg-secondary px-1 rounded">Architecture</span>.
-        </p>
-
-        <div class="flex justify-end gap-3 pt-2">
-          <button z-button zType="ghost" (click)="closeTechModal()">
-            No, just browsing
-          </button>
-          <button z-button (click)="goToGithub()">
-            Yes, Show me the Code 🚀
-          </button>
-        </div>
-
-      </z-card>
-    </div>
   </div>
   }
 
